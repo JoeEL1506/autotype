@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h4 class="writeIt"></h4>
+</body>
+<script>
+    let sentence = ['My name is Joel', 'I study Software Engineer at SQI College of ICT', 'The name of my instructor is Mr. Teslim'];
+    let sentences='';
+    let sentenceIndex='';
+
+    function start() {
+        let sentence=sentences[sentenceIndex]
+        console.log(sentence);
+        writeIt(sentence)
+    }
+    function writeIt(toWrite) {
+        display.innerHTML+=toWrite[wordIndex]
+        if (toWrite[wordIndex+1]) {
+            wordIndex++
+            setTimeout(() => {
+                writeIt(toWrite)
+            }, 100);
+        }
+        else{
+            setTimeout(() => {
+                removeIt();
+            }, 50);
+        }
+    }
+    function removeIt() {
+        if (display.innerHTML!='') {
+            setTimeout(() => {
+                display.innerHTML=display.innerHTML.slice(0, -1)
+                removeIt()
+            }, 50);
+        } 
+        else {
+            wordIndex=0;
+            if (sentence[sentenceIndex+1]) {
+                sentenceIndex=0
+                writeIt(sentence[sentenceIndex])
+            }
+            else{
+                sentenceIndex++
+                writeIt(sentence[sentenceIndex])
+            }
+        }
+    }
+    start()
+</script>
+
+</html>
